@@ -1,18 +1,18 @@
-name: 'Gist Write Action'
-description: 'Action to write data to gist'
+name: "sergeysova-gist-write"
+description: "Action to write data to gist"
 inputs:
   gist_id:
-    description: 'Gist ID'
+    description: "Gist ID"
     required: true
   file_name:
-    description: 'File name at the gist to write data at'
+    description: "File name at the gist to write data at"
     required: true
   content:
-    description: 'Content to write'
+    description: "Content to write"
     required: true
 outputs:
   content:
-    description: 'updated gist content'
+    description: "updated gist content"
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
