@@ -7,8 +7,6 @@ jobs:
     name: get data from gist
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
       - name: get data from gist
         uses: sergeysova/gist-read-action@master
         id: gist
