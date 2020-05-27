@@ -22,4 +22,8 @@ jobs:
         run: '[ "${{ steps.readed.outputs.content }}" ] || exit 1'
 
       - name: increment value from gist
-        run: echo "::set-output name=next::$((${{ steps.readed.outputs.content }} + 1))"
+        id: next
+        run: echo "::set-output name=value::$((${{ steps.readed.outputs.content }} + 1))"
+
+      - name: show incremented value ${{ steps.next.outputs.value }}
+        run: echo ${{ steps.next.outputs.value }}
