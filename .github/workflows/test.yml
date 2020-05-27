@@ -17,11 +17,13 @@ jobs:
           file_name: gist action test.txt
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      # - name: check if gist content "${{ steps.gist.outputs.content }}" not empty
-      #   run: '[ "${{ steps.gist.outputs.content }}" ] || exit 1'
-      # - name: increment value "${{ steps.gist.outputs.content }}" from gist
-      #   id: next
-      #   run: echo "::set-output name=value::$((${{ steps.gist.outputs.content }} + 1))"
+
+      - name: check if gist content "${{ steps.gist.outputs.content }}" not empty
+        run: '[ "${{ steps.gist.outputs.content }}" ] || exit 1'
+
+      - name: increment value "${{ steps.gist.outputs.content }}" from gist
+        id: next
+        run: echo "::set-output name=value::$((${{ steps.gist.outputs.content }} + 1))"
       # - name: show incremented value "${{ steps.next.outputs.value }}"
       #   run: echo ${{ steps.next.outputs.value }}
       # - name: write to gist incremented value
