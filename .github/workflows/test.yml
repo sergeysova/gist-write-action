@@ -24,23 +24,27 @@ jobs:
       - name: increment value "${{ steps.gist.outputs.content }}" from gist
         id: next
         run: echo "::set-output name=value::$((${{ steps.gist.outputs.content }} + 1))"
-      # - name: show incremented value "${{ steps.next.outputs.value }}"
-      #   run: echo ${{ steps.next.outputs.value }}
-      # - name: write to gist incremented value
-      #   uses: ./
-      #   with:
-      #     gist_id: e7213cee8029f2a76562feacedc3e3d4
-      #     file_name: gist action test.txt
-      #     content: ${{ steps.next.outputs.value }}
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      # - name: get data from gist again
-      #   id: again
-      #   uses: sergeysova/gist-read-action@master
-      #   with:
-      #     gist_id: e7213cee8029f2a76562feacedc3e3d4
-      #     file_name: gist action test.txt
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      # - name: check that new value "${{ steps.again.outputs.content }}" equals incremented "${{ steps.next.outputs.value }}"
-      #   run: if [ "${{ steps.again.outputs.content }}" != "${{ steps.next.outputs.value }}" ]; then exit -1; fi
+
+      - name: show incremented value "${{ steps.next.outputs.value }}"
+        run: echo ${{ steps.next.outputs.value }}
+
+      - name: write to gist incremented value
+        uses: sergeysova/gist-write-action@master
+        with:
+          gist_id: e7213cee8029f2a76562feacedc3e3d4
+          file_name: gist action test.txt
+          content: ${{ steps.next.outputs.value }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: get data from gist again
+        id: again
+        uses: sergeysova/gist-read-action@master
+        with:
+          gist_id: e7213cee8029f2a76562feacedc3e3d4
+          file_name: gist action test.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: check that new value "${{ steps.again.outputs.content }}" equals incremented "${{ steps.next.outputs.value }}"
+        run: if [ "${{ steps.again.outputs.content }}" != "${{ steps.next.outputs.value }}" ]; then exit -1; fi
