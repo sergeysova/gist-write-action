@@ -1,11 +1,12 @@
-name: "sergeysova-gist-write"
-description: "Action to write data to gist"
+name: "Gist Write Action"
+author: Sergey Sova
+description: "The action to write content to a gist"
 inputs:
   gist_id:
     description: "Gist ID"
     required: true
   file_name:
-    description: "File name at the gist to write data at"
+    description: "Name of the file at the gist to write data at"
     required: true
   content:
     description: "Content to write"
@@ -16,3 +17,6 @@ outputs:
 runs:
   using: "docker"
   image: "Dockerfile"
+branding:
+  color: blue
+  icon: upload-cloud
